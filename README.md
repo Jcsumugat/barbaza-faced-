@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Barbaza FACED Information System
 
 > **Family Assistance Card in Emergencies and Disasters**
@@ -574,3 +575,6 @@ barbaza-faced/
 
 _Municipality of Barbaza, Antique — MSWDO Digital Systems_
 # FACED
+=======
+# barbaza-faced-
+>>>>>>> ec11dc90f65c050714a3198915ef9d288d4ac82c
