@@ -1,18 +1,18 @@
 import Layout from '@/Components/Layout';
 import { Link, router, usePage } from '@inertiajs/react';
-import { Plus, Search, Filter, Eye, Edit, FileCheck, RotateCcw, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Plus, Search, Filter, Eye, Edit, FileCheck, RotateCcw } from 'lucide-react';
 import { useState } from 'react';
 
 const STATUS_COLORS = {
-    'Submitted':  'bg-orange-600 text-white',
-    'Returned':   'bg-amber-500 text-white',
-    'Validated':  'bg-emerald-600 text-white',
+    'Submitted': 'bg-gray-100 text-gray-700 border border-gray-200',
+    'Returned':  'bg-amber-50 text-amber-700 border border-amber-200',
+    'Validated': 'bg-emerald-50 text-emerald-700 border border-emerald-200',
 };
 
 const DAMAGE_COLORS = {
-    'None':               'bg-slate-100 text-slate-500',
-    'Partially Damaged':  'bg-orange-100 text-orange-700',
-    'Totally Damaged':    'bg-red-600 text-white',
+    'None':               'bg-gray-100 text-gray-500',
+    'Partially Damaged':  'bg-amber-50 text-amber-700 border border-amber-200',
+    'Totally Damaged':    'bg-red-50 text-red-700 border border-red-200',
 };
 
 export default function RecordsList({ records, filters }) {
@@ -20,8 +20,8 @@ export default function RecordsList({ records, filters }) {
     const user = auth.user;
     const isAdmin = user.role === 'MSWDO / Admin';
 
-    const [search, setSearch]   = useState(filters?.search || '');
-    const [status, setStatus]   = useState(filters?.status || '');
+    const [search,   setSearch]   = useState(filters?.search   || '');
+    const [status,   setStatus]   = useState(filters?.status   || '');
     const [barangay, setBarangay] = useState(filters?.barangay || '');
 
     const handleSearch = (e) => {
@@ -39,51 +39,48 @@ export default function RecordsList({ records, filters }) {
         router.patch(route('records.return', id));
     };
 
+    const selectClass = 'w-full bg-white border border-gray-200 hover:border-gray-300 focus:border-gray-900 rounded-lg pl-9 pr-4 py-2.5 text-sm font-medium text-gray-900 outline-none transition-all appearance-none';
+
     return (
         <Layout>
-            <div className="space-y-8">
+            <div className="space-y-6">
 
                 {/* Header */}
                 <div className="flex items-center justify-between">
                     <div>
-                        <h2 className="text-3xl font-black text-slate-900 uppercase tracking-tighter">
-                            FACED Records
-                        </h2>
-                        <p className="text-slate-400 text-xs font-bold uppercase tracking-widest mt-1">
+                        <h2 className="text-xl font-black text-gray-900 uppercase tracking-tight">FACED Records</h2>
+                        <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mt-0.5">
                             Household Profiling — Family Assistance Card
                         </p>
                     </div>
                     <Link
                         href={route('records.create')}
-                        className="bg-orange-600 text-white px-5 py-3 rounded-2xl font-black text-xs uppercase tracking-widest flex items-center space-x-2 shadow-lg shadow-orange-500/20 hover:bg-orange-700 transition-all shrink-0"
+                        className="bg-gray-900 hover:bg-gray-800 text-white px-4 py-2.5 rounded-lg font-black text-xs uppercase tracking-widest flex items-center gap-2 transition-all shrink-0"
                     >
-                        <Plus size={16} />
+                        <Plus size={14} />
                         <span>New Record</span>
                     </Link>
                 </div>
 
                 {/* Filters */}
-                <form onSubmit={handleSearch} className="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
-                    <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <form onSubmit={handleSearch} className="bg-white border border-gray-200 rounded-xl p-5">
+                    <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+
                         {/* Search */}
                         <div className="md:col-span-2 relative">
-                            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={16} />
+                            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={14} />
                             <input
                                 value={search}
                                 onChange={e => setSearch(e.target.value)}
                                 placeholder="Search by name or serial number..."
-                                className="w-full bg-slate-50 border border-slate-200 rounded-xl pl-11 pr-4 py-3 text-sm font-bold text-slate-900 outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 transition-all"
+                                className="w-full bg-white border border-gray-200 hover:border-gray-300 focus:border-gray-900 rounded-lg pl-9 pr-4 py-2.5 text-sm font-medium text-gray-900 placeholder-gray-300 outline-none transition-all"
                             />
                         </div>
 
                         {/* Status */}
                         <div className="relative">
-                            <Filter className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={14} />
-                            <select
-                                value={status}
-                                onChange={e => setStatus(e.target.value)}
-                                className="w-full bg-slate-50 border border-slate-200 rounded-xl pl-10 pr-4 py-3 text-sm font-bold text-slate-900 outline-none focus:border-orange-500 appearance-none"
-                            >
+                            <Filter className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={13} />
+                            <select value={status} onChange={e => setStatus(e.target.value)} className={selectClass}>
                                 <option value="">All Statuses</option>
                                 <option value="Submitted">Submitted</option>
                                 <option value="Returned">Returned</option>
@@ -92,25 +89,21 @@ export default function RecordsList({ records, filters }) {
                         </div>
 
                         {/* Barangay — admin only */}
-                        {isAdmin && (
+                        {isAdmin ? (
                             <div className="relative">
-                                <Filter className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={14} />
-                                <select
-                                    value={barangay}
-                                    onChange={e => setBarangay(e.target.value)}
-                                    className="w-full bg-slate-50 border border-slate-200 rounded-xl pl-10 pr-4 py-3 text-sm font-bold text-slate-900 outline-none focus:border-orange-500 appearance-none"
-                                >
+                                <Filter className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={13} />
+                                <select value={barangay} onChange={e => setBarangay(e.target.value)} className={selectClass}>
                                     <option value="">All Barangays</option>
                                     {['Binangbang','Cadiao','Capuyas','Esparar','Guintas','Ipil','Jinalinan','Luntao','Magtulis','Mayabay','Nalupa','Poblacion'].map(b => (
                                         <option key={b} value={b}>{b}</option>
                                     ))}
                                 </select>
                             </div>
-                        )}
+                        ) : <div />}
 
                         <button
                             type="submit"
-                            className="bg-slate-900 text-white px-6 py-3 rounded-xl font-black text-xs uppercase tracking-widest hover:bg-slate-800 transition-all"
+                            className="bg-gray-900 hover:bg-gray-800 text-white px-5 py-2.5 rounded-lg font-black text-xs uppercase tracking-widest transition-all"
                         >
                             Search
                         </button>
@@ -118,108 +111,98 @@ export default function RecordsList({ records, filters }) {
                 </form>
 
                 {/* Table */}
-                <div className="bg-white rounded-[2rem] border border-slate-100 shadow-sm overflow-hidden">
+                <div className="bg-white border border-gray-200 rounded-xl overflow-hidden">
                     <div className="overflow-x-auto">
                         <table className="w-full min-w-[900px]">
                             <thead>
-                                <tr className="bg-slate-900 text-[10px] font-black uppercase tracking-widest text-white">
-                                    <th className="px-6 py-4 text-left w-36">Serial No.</th>
-                                    <th className="px-6 py-4 text-left w-48">Household Head</th>
-                                    <th className="px-6 py-4 text-left w-32">Barangay</th>
-                                    <th className="px-6 py-4 text-left w-28">Status</th>
-                                    <th className="px-6 py-4 text-left w-36">Shelter Damage</th>
-                                    <th className="px-6 py-4 text-center w-20">VAI</th>
-                                    <th className="px-6 py-4 text-left w-28">Date Filed</th>
-                                    <th className="px-6 py-4 text-center w-32">Actions</th>
+                                <tr className="bg-gray-50 border-b border-gray-200 text-[9px] font-black uppercase tracking-widest text-gray-400">
+                                    <th className="px-6 py-3.5 text-left">Serial No.</th>
+                                    <th className="px-6 py-3.5 text-left">Household Head</th>
+                                    <th className="px-6 py-3.5 text-left">Barangay</th>
+                                    <th className="px-6 py-3.5 text-left">Status</th>
+                                    <th className="px-6 py-3.5 text-left">Shelter Damage</th>
+                                    <th className="px-6 py-3.5 text-center">VAI</th>
+                                    <th className="px-6 py-3.5 text-left">Date Filed</th>
+                                    <th className="px-6 py-3.5 text-center">Actions</th>
                                 </tr>
                             </thead>
-                            <tbody className="divide-y divide-slate-100">
+                            <tbody className="divide-y divide-gray-100">
                                 {records.data.length === 0 ? (
                                     <tr>
-                                        <td colSpan={8} className="px-6 py-16 text-center text-slate-300 font-black uppercase tracking-widest text-xs">
+                                        <td colSpan={8} className="px-6 py-16 text-center text-gray-300 font-black uppercase tracking-widest text-xs">
                                             No records found
                                         </td>
                                     </tr>
                                 ) : records.data.map(record => (
-                                    <tr key={record.id} className="hover:bg-slate-50 transition-colors">
-                                        <td className="px-6 py-4">
-                                            <span className="font-mono text-[10px] font-black text-slate-500 tracking-widest">
+                                    <tr key={record.id} className="hover:bg-gray-50 transition-colors">
+                                        <td className="px-6 py-3.5">
+                                            <span className="font-mono text-[10px] font-black text-gray-400 tracking-widest">
                                                 {record.serial_number}
                                             </span>
                                         </td>
-                                        <td className="px-6 py-4">
-                                            <span className="font-black text-slate-900 text-sm block truncate max-w-[180px]">
+                                        <td className="px-6 py-3.5">
+                                            <span className="font-black text-gray-900 text-sm block truncate max-w-[180px]">
                                                 {record.last_name}, {record.first_name}
                                             </span>
                                         </td>
-                                        <td className="px-6 py-4 text-sm font-bold text-slate-500 whitespace-nowrap">
+                                        <td className="px-6 py-3.5 text-sm font-bold text-gray-500 whitespace-nowrap">
                                             {record.barangay}
                                         </td>
-                                        <td className="px-6 py-4">
-                                            <span className={`px-2.5 py-1 rounded-lg text-[9px] font-black uppercase tracking-wider whitespace-nowrap ${STATUS_COLORS[record.status]}`}>
+                                        <td className="px-6 py-3.5">
+                                            <span className={`px-2 py-1 rounded text-[9px] font-black uppercase tracking-wider whitespace-nowrap ${STATUS_COLORS[record.status]}`}>
                                                 {record.status}
                                             </span>
                                         </td>
-                                        <td className="px-6 py-4">
-                                            <span className={`px-2.5 py-1 rounded-lg text-[9px] font-black uppercase tracking-wider whitespace-nowrap ${DAMAGE_COLORS[record.shelter_damage]}`}>
+                                        <td className="px-6 py-3.5">
+                                            <span className={`px-2 py-1 rounded text-[9px] font-black uppercase tracking-wider whitespace-nowrap ${DAMAGE_COLORS[record.shelter_damage]}`}>
                                                 {record.shelter_damage}
                                             </span>
                                         </td>
-                                        <td className="px-6 py-4 text-center">
-                                            <div className="flex flex-col items-center space-y-1">
-                                                <span className="font-black text-slate-900 text-sm">{record.vai_score}</span>
-                                                <div className="w-12 bg-slate-100 h-1.5 rounded-full overflow-hidden">
-                                                    <div
-                                                        className="bg-orange-600 h-full rounded-full"
-                                                        style={{ width: `${Math.min(record.vai_score, 100)}%` }}
-                                                    />
+                                        <td className="px-6 py-3.5">
+                                            <div className="flex flex-col items-center gap-1">
+                                                <span className="font-black text-gray-900 text-sm">{record.vai_score}</span>
+                                                <div className="w-12 bg-gray-100 h-1.5 rounded-full overflow-hidden">
+                                                    <div className="bg-gray-900 h-full rounded-full" style={{ width: `${Math.min(record.vai_score, 100)}%` }} />
                                                 </div>
                                             </div>
                                         </td>
-                                        <td className="px-6 py-4 text-sm font-bold text-slate-400 whitespace-nowrap">
+                                        <td className="px-6 py-3.5 text-sm font-bold text-gray-400 whitespace-nowrap">
                                             {record.date_registered}
                                         </td>
-                                        <td className="px-6 py-4">
-                                            <div className="flex items-center justify-center space-x-1">
-                                                {/* View */}
+                                        <td className="px-6 py-3.5">
+                                            <div className="flex items-center justify-center gap-1">
                                                 <Link
                                                     href={route('records.show', record.id)}
-                                                    className="p-2 text-slate-400 hover:text-orange-600 hover:bg-orange-50 rounded-xl transition-all"
+                                                    className="p-1.5 text-gray-400 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-all"
                                                     title="View"
                                                 >
-                                                    <Eye size={15} />
+                                                    <Eye size={14} />
                                                 </Link>
-
-                                                {/* Edit — only if not validated */}
                                                 {record.status !== 'Validated' && (
                                                     <Link
                                                         href={route('records.edit', record.id)}
-                                                        className="p-2 text-slate-400 hover:text-slate-900 hover:bg-slate-100 rounded-xl transition-all"
+                                                        className="p-1.5 text-gray-400 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-all"
                                                         title="Edit"
                                                     >
-                                                        <Edit size={15} />
+                                                        <Edit size={14} />
                                                     </Link>
                                                 )}
-
-                                                {/* Validate — admin only, submitted records */}
                                                 {isAdmin && record.status === 'Submitted' && (
                                                     <button
                                                         onClick={() => handleValidate(record.id)}
-                                                        className="p-2 text-slate-400 hover:text-emerald-600 hover:bg-emerald-50 rounded-xl transition-all"
+                                                        className="p-1.5 text-gray-400 hover:text-emerald-700 hover:bg-emerald-50 rounded-lg transition-all"
                                                         title="Validate"
                                                     >
-                                                        <FileCheck size={15} />
+                                                        <FileCheck size={14} />
                                                     </button>
                                                 )}
-
-                                                {/* Return — admin only, submitted records */}
                                                 {isAdmin && record.status === 'Submitted' && (
                                                     <button
                                                         onClick={() => handleReturn(record.id)}
-                                                        className="p-2 text-slate-400 hover:text-amber-600 hover:bg-amber-50 rounded-xl transition-all"
+                                                        className="p-1.5 text-gray-400 hover:text-amber-700 hover:bg-amber-50 rounded-lg transition-all"
                                                         title="Return for revision"
                                                     >
-                                                        <RotateCcw size={15} />
+                                                        <RotateCcw size={14} />
                                                     </button>
                                                 )}
                                             </div>
@@ -232,22 +215,22 @@ export default function RecordsList({ records, filters }) {
 
                     {/* Pagination */}
                     {records.last_page > 1 && (
-                        <div className="px-6 py-4 border-t border-slate-100 flex items-center justify-between">
-                            <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">
+                        <div className="px-6 py-4 border-t border-gray-200 flex items-center justify-between">
+                            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">
                                 Showing {records.from}–{records.to} of {records.total} records
                             </p>
-                            <div className="flex items-center space-x-2">
+                            <div className="flex items-center gap-1">
                                 {records.links.map((link, i) => (
                                     <button
                                         key={i}
                                         disabled={!link.url}
                                         onClick={() => link.url && router.get(link.url)}
-                                        className={`px-3 py-1.5 rounded-lg text-xs font-black uppercase tracking-wider transition-all
+                                        className={`px-3 py-1.5 rounded-lg text-[10px] font-black uppercase tracking-wider transition-all
                                             ${link.active
-                                                ? 'bg-orange-600 text-white'
+                                                ? 'bg-gray-900 text-white'
                                                 : link.url
-                                                    ? 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-                                                    : 'bg-slate-50 text-slate-300 cursor-not-allowed'
+                                                    ? 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                                                    : 'bg-gray-50 text-gray-300 cursor-not-allowed'
                                             }`}
                                         dangerouslySetInnerHTML={{ __html: link.label }}
                                     />

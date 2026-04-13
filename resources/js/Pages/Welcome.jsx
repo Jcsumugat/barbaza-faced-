@@ -1,81 +1,195 @@
-import { Link } from '@inertiajs/react';
-import { ShieldCheck, LogIn, UserPlus, ShieldAlert } from 'lucide-react';
+import { Link } from "@inertiajs/react";
+import {
+    ShieldCheck,
+    LogIn,
+    UserPlus,
+    ShieldAlert,
+    ChevronRight,
+} from "lucide-react";
 
 export default function Welcome() {
     return (
-        <div className="min-h-screen flex items-center justify-center bg-slate-950 px-4 font-sans relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-orange-600/10 rounded-full blur-[120px] -mr-64 -mt-64 pointer-events-none" />
-            <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[120px] -ml-64 -mb-64 pointer-events-none" />
+        <div className="min-h-screen bg-gray-50 flex flex-col font-sans">
+            {/* Top accent bar */}
+            <div className="h-1 w-full bg-gray-900 shrink-0" />
 
-            <div className="max-w-4xl w-full relative z-10">
-                {/* Header */}
-                <div className="text-center mb-16">
-                    <div className="inline-flex items-center justify-center w-24 h-24 bg-orange-600 rounded-[2rem] shadow-2xl shadow-orange-500/30 mb-8 animate-pulse">
-                        <ShieldCheck size={48} className="text-white" />
+            {/* Header bar */}
+            <header className="bg-white border-b border-gray-200 px-8 py-4">
+                <div className="max-w-5xl mx-auto flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 bg-gray-900 rounded-lg flex items-center justify-center">
+                            <ShieldCheck size={16} className="text-white" />
+                        </div>
+                        <div>
+                            <p className="text-xs font-black text-gray-900 uppercase tracking-tight leading-none">
+                                Barbaza FACED
+                            </p>
+                            <p className="text-[9px] text-gray-400 font-bold uppercase tracking-widest leading-none mt-0.5">
+                                MSWDO Portal
+                            </p>
+                        </div>
                     </div>
-                    <h1 className="text-5xl font-black text-white tracking-tighter uppercase italic">
-                        Barbaza FACED
-                    </h1>
-                    <p className="text-slate-400 mt-4 text-xl font-medium tracking-tight uppercase">
-                        Household Profiling & Assistance System
+                    <div className="hidden sm:flex items-center gap-4">
+                        <span className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">
+                            Municipality of Barbaza
+                        </span>
+                        <div className="h-3 w-px bg-gray-200" />
+                        <span className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">
+                            Province of Antique
+                        </span>
+                        <div className="h-3 w-px bg-gray-200" />
+                        <span className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">
+                            Region VI
+                        </span>
+                    </div>
+                </div>
+            </header>
+
+            {/* Main */}
+            <main className="flex-1 flex flex-col items-center justify-center px-6 py-20">
+                <div className="w-full max-w-2xl">
+                    {/* Hero text */}
+                    <div className="mb-12">
+                        <div className="flex items-center gap-2 mb-5">
+                            <div className="h-px w-6 bg-gray-300" />
+                            <span className="text-[9px] font-black text-gray-400 uppercase tracking-[0.3em]">
+                                Official Digital System
+                            </span>
+                        </div>
+                        <h1 className="text-4xl font-black text-gray-900 uppercase tracking-tighter leading-none mb-3">
+                            Family Assistance Card
+                            <br />
+                            <span className="text-gray-400">
+                                in Emergencies &amp; Disasters
+                            </span>
+                        </h1>
+                        <p className="text-sm text-gray-500 leading-relaxed max-w-md mt-4">
+                            A unified household profiling and assistance
+                            management platform for Barangay Staff and MSWDO
+                            officials of Barbaza, Antique.
+                        </p>
+                    </div>
+
+                    {/* Divider */}
+                    <div className="h-px w-full bg-gray-200 mb-8" />
+
+                    {/* Portal label */}
+                    <p className="text-[10px] font-black text-gray-400 uppercase tracking-[0.25em] mb-4">
+                        Select your access portal
                     </p>
-                    <div className="mt-6 flex flex-col items-center gap-2">
-                        <span className="px-5 py-2 bg-white/5 text-orange-500 border border-white/10 rounded-full text-[10px] font-black uppercase tracking-[0.3em] shadow-sm">
-                            Official Barbaza Portal
-                        </span>
-                        <span className="text-slate-600 text-[10px] font-bold uppercase tracking-widest">
-                            Municipality of Barbaza, Antique — MSWDO Digital System
-                        </span>
+
+                    {/* Cards */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
+                        {/* MSWDO Admin — dark card */}
+                        <Link
+                            href={route("login")}
+                            className="group bg-gray-900 hover:bg-gray-800 border border-gray-900 rounded-xl p-6 transition-all duration-200 flex flex-col"
+                        >
+                            <div className="flex items-start justify-between mb-5">
+                                <div className="w-9 h-9 bg-white/10 rounded-lg flex items-center justify-center">
+                                    <ShieldAlert
+                                        size={16}
+                                        className="text-white"
+                                    />
+                                </div>
+                                <span className="text-[8px] font-black text-gray-400 uppercase tracking-widest bg-white/10 px-2 py-1 rounded-md">
+                                    Municipal
+                                </span>
+                            </div>
+                            <h3 className="text-sm font-black text-white uppercase tracking-tight mb-1.5">
+                                MSWDO / Admin
+                            </h3>
+                            <p className="text-xs text-gray-400 leading-relaxed mb-5 flex-1">
+                                Full validation, approval workflows, SitRep
+                                generation, DROMIC encoding, and user
+                                management.
+                            </p>
+                            <div className="flex items-center gap-1.5 text-white">
+                                <LogIn size={12} />
+                                <span className="text-[10px] font-black uppercase tracking-wider">
+                                    Access Portal
+                                </span>
+                                <ChevronRight
+                                    size={12}
+                                    className="-translate-x-1 group-hover:translate-x-0 opacity-0 group-hover:opacity-100 transition-all duration-200"
+                                />
+                            </div>
+                        </Link>
+
+                        {/* Barangay Staff — light card */}
+                        <Link
+                            href={route("login.staff")}
+                            className="group bg-white border border-gray-200 hover:border-gray-900 rounded-xl p-6 transition-all duration-200 flex flex-col"
+                        >
+                            <div className="flex items-start justify-between mb-5">
+                                <div className="w-9 h-9 bg-gray-100 group-hover:bg-gray-900 rounded-lg flex items-center justify-center transition-colors duration-200">
+                                    <UserPlus
+                                        size={16}
+                                        className="text-gray-500 group-hover:text-white transition-colors duration-200"
+                                    />
+                                </div>
+                                <span className="text-[8px] font-black text-gray-400 uppercase tracking-widest bg-gray-100 px-2 py-1 rounded-md">
+                                    Barangay
+                                </span>
+                            </div>
+                            <h3 className="text-sm font-black text-gray-900 uppercase tracking-tight mb-1.5">
+                                Barangay Staff
+                            </h3>
+                            <p className="text-xs text-gray-400 leading-relaxed mb-5 flex-1">
+                                Household profiling, beneficiary registration,
+                                and assistance encoding for your assigned
+                                barangay.
+                            </p>
+                            <div className="flex items-center gap-1.5 text-gray-900">
+                                <LogIn size={12} />
+                                <span className="text-[10px] font-black uppercase tracking-wider">
+                                    Access Portal
+                                </span>
+                                <ChevronRight
+                                    size={12}
+                                    className="-translate-x-1 group-hover:translate-x-0 opacity-0 group-hover:opacity-100 transition-all duration-200"
+                                />
+                            </div>
+                        </Link>
+                    </div>
+                    
+                    {/* Info strip */}
+                    <div className="bg-white border border-gray-200 rounded-xl px-5 py-3 flex flex-col sm:flex-row items-center justify-between gap-3">
+                        <div className="flex items-center gap-2">
+                            <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                            <span className="text-[10px] text-gray-500 font-bold uppercase tracking-wider">
+                                System Operational
+                            </span>
+                        </div>
+                        <div className="flex items-center gap-3">
+                            <span className="text-[10px] text-gray-400 font-bold uppercase tracking-wider">
+                                LGU Barbaza
+                            </span>
+                            <div className="h-3 w-px bg-gray-200" />
+                            <span className="text-[10px] text-gray-400 font-bold uppercase tracking-wider">
+                                DSWD Region VI
+                            </span>
+                            <div className="h-3 w-px bg-gray-200" />
+                            <span className="text-[10px] text-gray-400 font-bold uppercase tracking-wider">
+                                RA 10173
+                            </span>
+                        </div>
                     </div>
                 </div>
+            </main>
 
-                {/* Portal Cards */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-2xl mx-auto">
-
-                    {/* Barangay Staff — goes to LoginStaff */}
-                    <Link
-                        href={route('login.staff')}
-                        className="group bg-white/5 hover:bg-white/10 border border-white/5 hover:border-orange-500/50 p-10 rounded-[2.5rem] transition-all duration-500 shadow-2xl flex flex-col items-center text-center transform hover:-translate-y-2"
-                    >
-                        <div className="w-20 h-20 bg-orange-500/10 rounded-3xl flex items-center justify-center text-orange-500 mb-8 group-hover:scale-110 transition-transform duration-500">
-                            <UserPlus size={36} />
-                        </div>
-                        <h3 className="text-2xl font-black text-white mb-3 group-hover:text-orange-500 transition-colors uppercase tracking-tight">
-                            Barangay Staff
-                        </h3>
-                        <p className="text-slate-500 text-sm leading-relaxed mb-8">
-                            Household profiling and initial assistance registration for your assigned barangay.
-                        </p>
-                        <span className="mt-auto bg-orange-600 group-hover:bg-orange-700 px-6 py-2.5 rounded-full text-white font-black text-[10px] uppercase tracking-widest flex items-center shadow-lg transition-all">
-                            Access Portal <LogIn size={14} className="ml-2" />
-                        </span>
-                    </Link>
-
-                    {/* MSWDO Admin — goes to Login */}
-                    <Link
-                        href={route('login')}
-                        className="group bg-white/5 hover:bg-white/10 border border-white/5 hover:border-orange-500/50 p-10 rounded-[2.5rem] transition-all duration-500 shadow-2xl flex flex-col items-center text-center transform hover:-translate-y-2"
-                    >
-                        <div className="w-20 h-20 bg-orange-500/10 rounded-3xl flex items-center justify-center text-orange-500 mb-8 group-hover:scale-110 transition-transform duration-500">
-                            <ShieldAlert size={36} />
-                        </div>
-                        <h3 className="text-2xl font-black text-white mb-3 group-hover:text-orange-500 transition-colors uppercase tracking-tight">
-                            MSWDO / Admin
-                        </h3>
-                        <p className="text-slate-500 text-sm leading-relaxed mb-8">
-                            Full validation, approval workflow, system reporting, and user account management.
-                        </p>
-                        <span className="mt-auto bg-orange-600 group-hover:bg-orange-700 px-6 py-2.5 rounded-full text-white font-black text-[10px] uppercase tracking-widest flex items-center shadow-lg transition-all">
-                            Access Portal <LogIn size={14} className="ml-2" />
-                        </span>
-                    </Link>
+            {/* Footer */}
+            <footer className="bg-white border-t border-gray-200 px-8 py-4">
+                <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
+                    <p className="text-[9px] text-gray-400 font-bold uppercase tracking-widest">
+                        © {new Date().getFullYear()} Municipal Government of
+                        Barbaza, Antique
+                    </p>
+                    <p className="text-[9px] text-gray-300 font-bold uppercase tracking-widest">
+                        Powered by MSWDO · All Rights Reserved
+                    </p>
                 </div>
-
-                {/* Footer */}
-                <p className="text-center text-slate-700 text-[10px] font-bold uppercase tracking-widest mt-16">
-                    Powered by LGU Barbaza · DSWD Region VI · Data Privacy Act RA 10173
-                </p>
-            </div>
+            </footer>
         </div>
     );
 }

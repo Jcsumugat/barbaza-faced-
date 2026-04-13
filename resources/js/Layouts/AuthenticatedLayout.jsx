@@ -1,7 +1,7 @@
 import { Link, usePage } from '@inertiajs/react';
 import {
     LayoutDashboard, FileText, BarChart2,
-    ShieldAlert, Users, LogOut, ShieldCheck, Menu, X
+    ShieldAlert, Users, LogOut, ShieldCheck, Menu, X, ChevronRight
 } from 'lucide-react';
 import { useState } from 'react';
 
@@ -51,66 +51,72 @@ export default function Layout({ children }) {
     const visibleNav = navItems.filter(item => item.roles.includes(user.role));
 
     return (
-        <div className="min-h-screen bg-slate-50 flex">
+        <div className="min-h-screen bg-gray-50 flex">
+
             {/* Sidebar */}
-            <aside className={`${sidebarOpen ? 'w-64' : 'w-20'} bg-slate-900 flex flex-col transition-all duration-300 shrink-0`}>
+            <aside className={`${sidebarOpen ? 'w-60' : 'w-16'} bg-white border-r border-gray-200 flex flex-col transition-all duration-300 shrink-0`}>
+
                 {/* Logo */}
-                <div className="p-6 border-b border-white/10 flex items-center justify-between">
+                <div className={`h-[57px] border-b border-gray-200 flex items-center shrink-0 ${sidebarOpen ? 'px-4 justify-between' : 'justify-center'}`}>
                     {sidebarOpen && (
-                        <div>
-                            <div className="flex items-center space-x-2">
-                                <div className="bg-orange-600 p-1.5 rounded-lg">
-                                    <ShieldCheck size={18} className="text-white" />
-                                </div>
-                                <span className="text-white font-black text-sm uppercase tracking-tight">Barbaza FACED</span>
+                        <div className="flex items-center gap-2.5 overflow-hidden">
+                            <div className="w-7 h-7 bg-gray-900 rounded-lg flex items-center justify-center shrink-0">
+                                <ShieldCheck size={14} className="text-white" />
                             </div>
-                            <p className="text-slate-500 text-[9px] font-bold uppercase tracking-widest mt-1 ml-8">
-                                MSWDO Portal
-                            </p>
+                            <div className="overflow-hidden">
+                                <p className="text-xs font-black text-gray-900 uppercase tracking-tight leading-none truncate">Barbaza FACED</p>
+                                <p className="text-[9px] text-gray-400 font-bold uppercase tracking-widest leading-none mt-0.5">MSWDO Portal</p>
+                            </div>
                         </div>
                     )}
                     <button
                         onClick={() => setSidebarOpen(!sidebarOpen)}
-                        className="text-slate-400 hover:text-white transition-colors p-1"
+                        className="text-gray-400 hover:text-gray-900 transition-colors p-1 shrink-0"
                     >
-                        {sidebarOpen ? <X size={18} /> : <Menu size={18} />}
+                        {sidebarOpen ? <X size={16} /> : <Menu size={16} />}
                     </button>
                 </div>
 
                 {/* Nav Items */}
-                <nav className="flex-1 p-4 space-y-1">
+                <nav className="flex-1 p-3 space-y-0.5 overflow-y-auto">
+                    {!sidebarOpen && (
+                        <div className="h-px w-full bg-gray-100 mb-2" />
+                    )}
                     {visibleNav.map(item => (
                         <Link
                             key={item.label}
                             href={item.href}
-                            className={`flex items-center space-x-3 px-3 py-3 rounded-xl transition-all group
+                            className={`flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all group
                                 ${item.active
-                                    ? 'bg-orange-600 text-white shadow-lg shadow-orange-600/20'
-                                    : 'text-slate-400 hover:bg-white/5 hover:text-white'
-                                }`}
+                                    ? 'bg-gray-900 text-white'
+                                    : 'text-gray-500 hover:bg-gray-100 hover:text-gray-900'
+                                } ${!sidebarOpen ? 'justify-center' : ''}`}
                         >
-                            <item.icon size={20} className="shrink-0" />
+                            <item.icon size={16} className="shrink-0" />
                             {sidebarOpen && (
-                                <span className="text-xs font-black uppercase tracking-wide">
+                                <span className="text-[11px] font-black uppercase tracking-wide flex-1 truncate">
                                     {item.label}
                                 </span>
+                            )}
+                            {sidebarOpen && item.active && (
+                                <ChevronRight size={12} className="shrink-0 opacity-60" />
                             )}
                         </Link>
                     ))}
                 </nav>
 
                 {/* User Info */}
-                <div className="p-4 border-t border-white/10">
-                    <div className={`flex items-center ${sidebarOpen ? 'space-x-3' : 'justify-center'} mb-3`}>
-                        <div className="w-8 h-8 bg-orange-600 rounded-lg flex items-center justify-center shrink-0">
-                            <span className="text-white text-xs font-black">
+                <div className="p-3 border-t border-gray-200 space-y-1">
+                    <div className={`flex items-center gap-2.5 px-3 py-2 ${!sidebarOpen ? 'justify-center' : ''}`}>
+                        <div className="w-7 h-7 bg-gray-900 rounded-lg flex items-center justify-center shrink-0">
+                            <span className="text-white text-[10px] font-black">
                                 {user.name.charAt(0).toUpperCase()}
                             </span>
                         </div>
                         {sidebarOpen && (
-                            <div className="overflow-hidden">
-                                <p className="text-white text-xs font-black truncate">{user.name}</p>
-                                <p className="text-slate-500 text-[9px] font-bold uppercase tracking-wider truncate">
+                            <div className="overflow-hidden flex-1">
+                                <p className="text-xs font-black text-gray-900 truncate leading-none">{user.name}</p>
+                                <p className="text-[9px] text-gray-400 font-bold uppercase tracking-wider truncate leading-none mt-0.5">
                                     {user.role}
                                 </p>
                             </div>
@@ -120,33 +126,36 @@ export default function Layout({ children }) {
                         href={route('logout')}
                         method="post"
                         as="button"
-                        className={`w-full flex items-center ${sidebarOpen ? 'space-x-2' : 'justify-center'} px-3 py-2 text-slate-400 hover:text-red-400 hover:bg-red-400/10 rounded-xl transition-all`}
+                        className={`w-full flex items-center gap-2 px-3 py-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all ${!sidebarOpen ? 'justify-center' : ''}`}
                     >
-                        <LogOut size={16} />
-                        {sidebarOpen && <span className="text-xs font-black uppercase tracking-wide">Logout</span>}
+                        <LogOut size={14} />
+                        {sidebarOpen && (
+                            <span className="text-[11px] font-black uppercase tracking-wide">Logout</span>
+                        )}
                     </Link>
                 </div>
             </aside>
 
             {/* Main Content */}
-            <main className="flex-1 overflow-auto">
+            <main className="flex-1 overflow-auto flex flex-col min-h-screen">
+
                 {/* Top Bar */}
-                <header className="bg-white border-b border-slate-100 px-8 py-4 flex items-center justify-between sticky top-0 z-30 shadow-sm">
+                <header className="bg-white border-b border-gray-200 px-8 h-[57px] flex items-center justify-between sticky top-0 z-30 shrink-0">
                     <div>
-                        <h1 className="text-sm font-black text-slate-900 uppercase tracking-tight">
+                        <h1 className="text-xs font-black text-gray-900 uppercase tracking-tight leading-none">
                             Municipality of Barbaza, Antique
                         </h1>
-                        <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">
+                        <p className="text-[9px] text-gray-400 font-bold uppercase tracking-widest leading-none mt-0.5">
                             Family Assistance Card in Emergencies and Disasters
                         </p>
                     </div>
-                    <div className="flex items-center space-x-3">
+                    <div className="flex items-center gap-2">
                         {user.assigned_barangay && (
-                            <span className="bg-orange-50 text-orange-600 border border-orange-200 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest">
+                            <span className="bg-gray-100 text-gray-600 border border-gray-200 px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest">
                                 Brgy. {user.assigned_barangay}
                             </span>
                         )}
-                        <span className="bg-slate-100 text-slate-600 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest">
+                        <span className="bg-gray-900 text-white px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest">
                             {user.role}
                         </span>
                     </div>
@@ -156,7 +165,7 @@ export default function Layout({ children }) {
                 <FlashMessages />
 
                 {/* Page Content */}
-                <div className="p-8">
+                <div className="p-8 flex-1">
                     {children}
                 </div>
             </main>
@@ -172,15 +181,15 @@ function FlashMessages() {
     if (!flash?.success && !flash?.error) return null;
 
     return (
-        <div className={`mx-8 mt-6 px-6 py-4 rounded-2xl flex items-center justify-between font-bold text-sm
+        <div className={`mx-8 mt-6 px-5 py-3.5 rounded-xl flex items-center justify-between text-sm font-bold border
             ${flash.success
-                ? 'bg-emerald-50 text-emerald-800 border border-emerald-200'
-                : 'bg-red-50 text-red-800 border border-red-200'
+                ? 'bg-emerald-50 text-emerald-800 border-emerald-200'
+                : 'bg-red-50 text-red-800 border-red-200'
             }`}
         >
-            <span>{flash.success || flash.error}</span>
-            <button onClick={() => setVisible(false)} className="ml-4 opacity-60 hover:opacity-100">
-                <X size={16} />
+            <span className="text-xs uppercase tracking-wide font-black">{flash.success || flash.error}</span>
+            <button onClick={() => setVisible(false)} className="ml-4 opacity-40 hover:opacity-100 transition-opacity">
+                <X size={14} />
             </button>
         </div>
     );

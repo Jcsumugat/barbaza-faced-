@@ -1,9 +1,9 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.3
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Mar 27, 2026 at 02:23 PM
+-- Host: 127.0.0.1
+-- Generation Time: Apr 13, 2026 at 04:53 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -61,16 +61,10 @@ CREATE TABLE `cache` (
 --
 
 INSERT INTO `cache` (`key`, `value`, `expiration`) VALUES
-('laravel-cache-admin@barbaza.gov.ph|127.0.0.1', 'i:1;', 1773247574),
-('laravel-cache-admin@barbaza.gov.ph|127.0.0.1:timer', 'i:1773247574;', 1773247574),
-('laravel-cache-admin@gmail.com|127.0.0.1', 'i:2;', 1773248894),
-('laravel-cache-admin@gmail.com|127.0.0.1:timer', 'i:1773248894;', 1773248894),
-('laravel-cache-adminbarbaza@gmail.com|127.0.0.1', 'i:2;', 1774074667),
-('laravel-cache-adminbarbaza@gmail.com|127.0.0.1:timer', 'i:1774074667;', 1774074667),
-('laravel-cache-adminministrator@gmail.com|127.0.0.1', 'i:1;', 1773248909),
-('laravel-cache-adminministrator@gmail.com|127.0.0.1:timer', 'i:1773248909;', 1773248909),
-('laravel-cache-jcsumugatxd@gmail.com|127.0.0.1', 'i:1;', 1774074636),
-('laravel-cache-jcsumugatxd@gmail.com|127.0.0.1:timer', 'i:1774074636;', 1774074636);
+('laravel-cache-administration@gmail.com|127.0.0.1', 'i:1;', 1774929446),
+('laravel-cache-administration@gmail.com|127.0.0.1:timer', 'i:1774929446;', 1774929446),
+('laravel-cache-administratior@gmail.com|127.0.0.1', 'i:1;', 1774929453),
+('laravel-cache-administratior@gmail.com|127.0.0.1:timer', 'i:1774929453;', 1774929453);
 
 -- --------------------------------------------------------
 
@@ -143,7 +137,7 @@ CREATE TABLE `faced_records` (
 --
 
 INSERT INTO `faced_records` (`id`, `serial_number`, `status`, `region`, `province`, `municipality`, `district`, `barangay`, `evacuation_center`, `last_name`, `first_name`, `middle_name`, `name_extension`, `civil_status`, `mothers_maiden_name`, `religion`, `occupation`, `birthdate`, `age`, `sex`, `birthplace`, `monthly_income`, `id_presented`, `id_number`, `contact_primary`, `contact_alternate`, `permanent_address`, `is_4ps`, `is_ip`, `ip_group`, `others_category`, `bank_provider`, `account_name`, `account_type`, `account_number`, `house_ownership`, `shelter_damage`, `consent_checked`, `signed_form_url`, `remarks`, `vai_score`, `date_registered`, `created_by`, `created_at`, `updated_at`) VALUES
-('0d6c17b7-3e0b-45c0-9126-51ca96a7ae2e', 'FACED-2026-0001', 'Submitted', 'Region VI', 'Antique', 'Barbaza', NULL, 'Poblacion', NULL, 'Sumugat', 'John', 'Carlo', NULL, 'Single', NULL, NULL, NULL, '2003-08-08', NULL, 'Male', NULL, 3000.00, 'National ID', NULL, '09567460163', NULL, 'Culasi Antique, Philippines', 0, 0, NULL, NULL, NULL, NULL, 'Savings', NULL, 'Owner', 'Partially Damaged', 1, NULL, NULL, 40, '2026-03-12', 4, '2026-03-12 07:28:07', '2026-03-12 07:28:08');
+('0d6c17b7-3e0b-45c0-9126-51ca96a7ae2e', 'FACED-2026-0001', 'Submitted', 'Antique', 'Antique', 'Barbaza', NULL, 'Poblacion', NULL, 'Sumugat', 'John', 'Carlo', NULL, 'Single', 'Rosalie S. Lomugdang', 'Roman Catholic', 'Freelancer', '2003-08-08', NULL, 'Male', 'Malacanang', 3000.00, 'National ID', NULL, '09567460163', '09567460163', 'Culasi Antique, Philippines', 0, 0, NULL, NULL, 'Landbank', 'John Carlo Sumugat', 'Savings', '3376272620', 'Owner', 'Partially Damaged', 1, NULL, NULL, 40, '2026-03-12', 4, '2026-03-12 07:28:07', '2026-03-30 14:38:58');
 
 -- --------------------------------------------------------
 
@@ -187,7 +181,7 @@ CREATE TABLE `family_members` (
 --
 
 INSERT INTO `family_members` (`id`, `faced_record_id`, `name`, `relationship`, `birthdate`, `age`, `sex`, `birthplace`, `occupation`, `educational_attainment`, `created_at`, `updated_at`) VALUES
-('3b0679f2-f1a4-4dd9-aa7f-5a7bae0a5dca', '0d6c17b7-3e0b-45c0-9126-51ca96a7ae2e', 'John Carlo Sumugat', 'Sibling', '2010-08-08', NULL, 'Male', NULL, NULL, NULL, '2026-03-12 07:28:07', '2026-03-12 07:28:07');
+('ee9147f8-8664-400d-a168-f8c6179fa59c', '0d6c17b7-3e0b-45c0-9126-51ca96a7ae2e', 'John Carlo Sumugat', 'Sibling', '2010-08-08', NULL, 'Male', NULL, NULL, NULL, '2026-03-30 06:39:17', '2026-03-30 06:39:17');
 
 -- --------------------------------------------------------
 
@@ -289,8 +283,18 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('6kfBNzkoo5VA4f8M0g6qm1F416PA5U6Z0ZhvSK9P', 3, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiRjdQb1ZHSVUxQlhlUDNJemM4T0pnVFNnTFdXWTB4M1RhaktxZWQ0RyI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly8xMjcuMC4wLjE6ODA4MC9sb2dpbiI7czo1OiJyb3V0ZSI7czo1OiJsb2dpbiI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjM7fQ==', 1774076947),
-('xGBIB6XCwf5tAtovXxBYEBxqpHN654OfxBWspkE9', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36', 'YToyOntzOjY6Il90b2tlbiI7czo0MDoiZ2VKUFdmNGxaMjdQbEhobUhES2RVeVR0ZHZIY1ZWR05rQUFheGFxZCI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1773329465);
+('47lLgYAIYBI7yOrzbSPKhJn4u7oegsYaN9WNpWC5', 3, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoid05qWEwxNGl1ZEVNMlpvMHROaXpjNXFUdHdKNUlid2hlQU5pcnBxVSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODA4MCI7czo1OiJyb3V0ZSI7czo3OiJ3ZWxjb21lIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6Mzt9', 1774930807),
+('7toK1IBNvNaCzwcVHgjYiDhHKvu5IXzhnaLekqCF', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiSnRRdkRDQ1lpd1J2Rmw0NHJJY1VPMmk4R3FpdHNmUG5sa1psVHVEViI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODA4MCI7czo1OiJyb3V0ZSI7czo3OiJ3ZWxjb21lIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1775980848),
+('8UWzv80uLfWCNsVdYZMOROC5GA09zO7rbuMdvVFb', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiYzhCUzV2OEpTdllpWUpkY1lrenlOZW9meGJtMGVYTHo4WUVnOTJkbSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czozNjoiaHR0cDovLzEyNy4wLjAuMTo4MDgwL3JlY29yZHMvY3JlYXRlIjt9czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly8xMjcuMC4wLjE6ODA4MC9sb2dpbiI7czo1OiJyb3V0ZSI7czo1OiJsb2dpbiI7fX0=', 1774930959),
+('bbjYKvHaY3CPBLOG3okyPtVn6rKErCS8fcBIyrsc', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36 Edg/146.0.0.0', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiUzF5aWdhR1lvMjhMY1F6ZXVyQ0tNUkhNdmFtZmhKcE1RNVFaeWhOciI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODA4MCI7czo1OiJyb3V0ZSI7czo3OiJ3ZWxjb21lIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1774881199),
+('BkssBuy2sEYPMZOJarMxEhCwwbhMQkDlQjHsv5UI', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36 Edg/146.0.0.0', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiSFI5SVBzT0w2QlFDQ2pVSTY4cGhTUlpGRzVvVWx0djM2OHRvdmd2UyI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODA4MCI7czo1OiJyb3V0ZSI7czo3OiJ3ZWxjb21lIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1775980814),
+('gOOeBF6To3Shrl3IKRDInY0QmQR1SABNHnukJWeh', 3, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiRGVPaW9rUjlxclc2a3dlMWJlNlhhZTRRaVhWNElUZEp2b0JRSllHUyI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODA4MCI7czo1OiJyb3V0ZSI7czo3OiJ3ZWxjb21lIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6Mzt9', 1776048115),
+('hePHWnHg9SgU5tKnEfhY83v8khnVJhNrUj2oXlLb', 3, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiNlMweWxVZ0RxWlBoT3hYU1pvbld4dFRLTE1US2VjNURZTGVER2dPZyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MztzOjk6Il9wcmV2aW91cyI7YToyOntzOjM6InVybCI7czoyOToiaHR0cDovLzEyNy4wLjAuMTo4MDgwL3JlY29yZHMiO3M6NToicm91dGUiO3M6MTM6InJlY29yZHMuaW5kZXgiO319', 1774881634),
+('KptX8RTKE8nfofpc2pZCjcYHXwuW0DvwzcuD4dKV', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36 Edg/146.0.0.0', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiM0RnVTJ4SmNWZjJmb0VpZGd1eWMyNGZkMml2ZVJGNTJqVlVwSGoyYyI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODA4MCI7czo1OiJyb3V0ZSI7czo3OiJ3ZWxjb21lIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1774929252),
+('Mmkfx9UprbjSMhq6VWCQp6vqFBfXxABfZDtarnDG', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiTkk5bGJsNFJaNjZkcGtIWEpKTE0yUnlZR3RlNlNUWWQ4MTlzZ0hmRCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODA4MCI7czo1OiJyb3V0ZSI7czo3OiJ3ZWxjb21lIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1776047958),
+('qoN9OxioyfWCmxO7sshbY01zEGBJjbvk9LQqdlJv', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36 Edg/146.0.0.0', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiTUlLQ1ZwbFh0Q3lYWVg5Wlo4Vzl2VUtqWXFGNHIySjlXTUtCd1hieiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODA4MCI7czo1OiJyb3V0ZSI7czo3OiJ3ZWxjb21lIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1776047957),
+('Us42M108BDWZFt14YffjxPhOhOEkV7T9kQS4o5JK', 3, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiOWRVRHJwOExWcXI2U0lUT05RVkV0Z0JWUTlNdHdocGI2bkhnMkdWWiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MztzOjk6Il9wcmV2aW91cyI7YToyOntzOjM6InVybCI7czoyMToiaHR0cDovLzEyNy4wLjAuMTo4MDgwIjtzOjU6InJvdXRlIjtzOjc6IndlbGNvbWUiO319', 1776048453),
+('uyfi8mHEwlaFcMFFcAq8q5tkg25MiKbyQsFFgxWW', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36', 'YToyOntzOjY6Il90b2tlbiI7czo0MDoiZG5YRGVhbkNWTXQxTzdrRzdjNXhWbzYyVnpQWGFpd1huZnJHdWNVbyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1774930926);
 
 -- --------------------------------------------------------
 
@@ -340,7 +344,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `role`, `assigned_barangay`, `remember_token`, `created_at`, `updated_at`) VALUES
-(3, 'Jc Sumugat', 'administrator@gmail.com', NULL, '$2y$12$/4UFAzRbQkFwPIBCwR78oO.izfb8cUl5mMBWMjSyn/.C8UnpoLv.a', 'MSWDO / Admin', NULL, '7Jz3JfG2d5Bi0gLhFC1Y8skeUTsxrrtKyqdcWtnuS1yqKd2eucO0vn0ai6JD', '2026-03-11 08:49:48', '2026-03-11 08:49:48'),
+(3, 'Jc Sumugat', 'administrator@gmail.com', NULL, '$2y$12$/4UFAzRbQkFwPIBCwR78oO.izfb8cUl5mMBWMjSyn/.C8UnpoLv.a', 'MSWDO / Admin', NULL, 'xYPjkDePabgZEvOoPBHM7gU4uAMlNYu83jUMaWmj4KUdPJd7FK9C3UTG796P', '2026-03-11 08:49:48', '2026-03-11 08:49:48'),
 (4, 'Jc Sumugat', 'staff@gmail.com', NULL, '$2y$12$XwOI3q94OC.htSO1ZkqqCexZ8EAX/2M/jU7gm25kp0XVpyLdm9VI6', 'Barangay Staff', 'Poblacion', NULL, '2026-03-11 08:58:34', '2026-03-11 08:58:34');
 
 --
