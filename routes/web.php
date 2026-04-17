@@ -42,7 +42,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // FACED Records — all roles can view/create
     Route::resource('records', FacedRecordController::class);
 
-    // ✅ Validate & Return actions — Admin only
+    // Admin only
     Route::patch('records/{record}/validate', [FacedRecordController::class, 'validateRecord'])
         ->name('records.validate');
     Route::patch('records/{record}/return', [FacedRecordController::class, 'returnRecord'])
@@ -59,7 +59,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // Reports — all roles
     Route::get('/reports', [ReportController::class, 'index'])
         ->name('reports.index');
-
+Route::get('records/{record}/print', [FacedRecordController::class, 'print'])
+    ->name('records.print');
+    
     // SitRep — Admin only
     Route::middleware(['role:MSWDO / Admin'])->group(function () {
         Route::get('/sitrep', [SitRepController::class, 'index'])

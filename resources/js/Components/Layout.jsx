@@ -32,13 +32,13 @@ export default function Layout({ children }) {
             active: route().current('reports.*'),
             roles: ['Barangay Staff', 'MSWDO / Admin'],
         },
-        {
+/*         {
             label: 'SitRep / DROMIC',
             href: route('sitrep.index'),
             icon: ShieldAlert,
             active: route().current('sitrep.*'),
             roles: ['MSWDO / Admin'],
-        },
+        }, */
         {
             label: 'User Management',
             href: route('users.index'),

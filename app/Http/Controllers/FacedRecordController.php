@@ -159,6 +159,10 @@ class FacedRecordController extends Controller
         return Inertia::render('FacedForm', [
             'record' => $this->formatRecord($record),
         ]);
+
+        return Inertia::render('FacedPrint', [
+            'record' => $record->load(['familyMembers.vulnerabilities', 'assistanceRecords'])
+        ]);
     }
 
     public function edit(FacedRecord $record)

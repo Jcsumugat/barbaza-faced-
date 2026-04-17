@@ -410,7 +410,7 @@ export default function FacedForm({ record }) {
                                                         <input value={member.name} onChange={e => updateMember(i, 'name', e.target.value)} className={inputClass} disabled={readOnly} />
                                                     </div>
                                                     <div>
-                                                        <label className={labelClass}>Relationship</label>
+                                                        <label className={labelClass}>Relation to Family Head</label>
                                                         <select value={member.relationship} onChange={e => updateMember(i, 'relationship', e.target.value)} className={inputClass} disabled={readOnly}>
                                                             {RELATIONSHIPS.map(r => <option key={r}>{r}</option>)}
                                                         </select>
@@ -438,7 +438,7 @@ export default function FacedForm({ record }) {
                                                         <input value={member.occupation} onChange={e => updateMember(i, 'occupation', e.target.value)} className={inputClass} disabled={readOnly} />
                                                     </div>
                                                     <div>
-                                                        <label className={labelClass}>Educational Attainment</label>
+                                                        <label className={labelClass}>Highest Educational Attainment</label>
                                                         <input value={member.educational_attainment} onChange={e => updateMember(i, 'educational_attainment', e.target.value)} className={inputClass} disabled={readOnly} />
                                                     </div>
                                                 </div>
