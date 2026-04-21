@@ -2,7 +2,7 @@ import Layout from '@/Components/Layout';
 import { useForm, usePage } from '@inertiajs/react';
 import {
     MapPin, User, Users, CreditCard, Home,
-    ShieldCheck, Plus, Trash2, ChevronDown, ChevronUp, Save
+    ShieldCheck, Plus, Trash2, ChevronDown, ChevronUp, Printer, Save
 } from 'lucide-react';
 import { useState } from 'react';
 
@@ -146,36 +146,50 @@ export default function FacedForm({ record }) {
             <div className="space-y-5">
 
                 {/* Page Header */}
-                <div className="flex items-start justify-between gap-4">
-                    <div>
-                        <h2 className="text-xl font-black text-gray-900 uppercase tracking-tight">
-                            {isEdit ? 'Edit FACED Record' : 'New FACED Record'}
-                        </h2>
-                        <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mt-0.5">
-                            {isEdit
-                                ? <>Serial: <span className="font-mono text-gray-700">{record?.serial_number}</span> · Status: <span className={
-                                    record?.status === 'Validated' ? 'text-emerald-600' :
-                                    record?.status === 'Returned'  ? 'text-amber-600'   : 'text-gray-600'
-                                }>{record?.status}</span></>
-                                : 'Family Assistance Card in Emergencies and Disasters — Form 1-A'
-                            }
-                        </p>
-                    </div>
+               <div className="flex items-start justify-between gap-4">
+    <div>
+        <h2 className="text-xl font-black text-gray-900 uppercase tracking-tight">
+            {isEdit ? 'Edit FACED Record' : 'New FACED Record'}
+        </h2>
+        <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mt-0.5">
+            {isEdit
+                ? <>Serial: <span className="font-mono text-gray-700">{record?.serial_number}</span> · Status: <span className={
+                    record?.status === 'Validated' ? 'text-emerald-600' :
+                    record?.status === 'Returned'  ? 'text-amber-600'   : 'text-gray-600'
+                }>{record?.status}</span></>
+                : 'Family Assistance Card in Emergencies and Disasters — Form 1-A'
+            }
+        </p>
+    </div>
 
-                    {/* VAI Score Preview */}
-                    <div className="bg-white border border-gray-200 rounded-xl px-5 py-3.5 flex items-center gap-4 shrink-0">
-                        <div>
-                            <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest">VAI Score</p>
-                            <p className="text-2xl font-black text-gray-900 leading-none mt-0.5">{vaiPreview}</p>
-                        </div>
-                        <div className="w-14">
-                            <div className="w-full bg-gray-100 h-1.5 rounded-full overflow-hidden">
-                                <div className="bg-gray-900 h-full rounded-full transition-all duration-300" style={{ width: `${Math.min(vaiPreview, 100)}%` }} />
-                            </div>
-                            <p className="text-[9px] text-gray-400 font-bold uppercase tracking-widest mt-1 text-right">/ 110</p>
-                        </div>
-                    </div>
+    <div className="flex items-center gap-3 shrink-0">
+{isEdit && (
+    <a
+        href={route('records.print', record.id)}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex items-center gap-2 px-4 py-2.5 bg-white border border-gray-200 hover:border-gray-400 hover:bg-gray-50 text-gray-700 rounded-lg font-black text-xs uppercase tracking-widest transition-all"
+    >
+        <Printer size={14} />
+        <span>Print</span>
+    </a>
+)}
+
+        {/* VAI Score Preview */}
+        <div className="bg-white border border-gray-200 rounded-xl px-5 py-3.5 flex items-center gap-4">
+            <div>
+                <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest">VAI Score</p>
+                <p className="text-2xl font-black text-gray-900 leading-none mt-0.5">{vaiPreview}</p>
+            </div>
+            <div className="w-14">
+                <div className="w-full bg-gray-100 h-1.5 rounded-full overflow-hidden">
+                    <div className="bg-gray-900 h-full rounded-full transition-all duration-300" style={{ width: `${Math.min(vaiPreview, 100)}%` }} />
                 </div>
+                <p className="text-[9px] text-gray-400 font-bold uppercase tracking-widest mt-1 text-right">/ 110</p>
+            </div>
+        </div>
+    </div>
+</div>
 
                 <form onSubmit={handleSubmit} className="space-y-4">
 

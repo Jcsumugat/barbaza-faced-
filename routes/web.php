@@ -41,6 +41,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // FACED Records — all roles can view/create
     Route::resource('records', FacedRecordController::class);
+    Route::get('records/{record}/print', [FacedRecordController::class, 'print'])
+        ->name('records.print');
 
     // Admin only
     Route::patch('records/{record}/validate', [FacedRecordController::class, 'validateRecord'])
@@ -48,20 +50,25 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::patch('records/{record}/return', [FacedRecordController::class, 'returnRecord'])
         ->name('records.return');
 
-    // Assistance Records — nested under a FACED record
+    // Assistance Records — nested under a FACED record  
+    Route::get('/assistance', [AssistanceRecordController::class, 'index'])
+        ->name('assistance.index');
+    Route::get('records/{record}/assistance', [AssistanceRecordController::class, 'show'])
+        ->name('assistance.show');
     Route::post('records/{record}/assistance', [AssistanceRecordController::class, 'store'])
         ->name('assistance.store');
     Route::patch('records/{record}/assistance/{assistance}/approve', [AssistanceRecordController::class, 'approve'])
         ->name('assistance.approve');
     Route::patch('records/{record}/assistance/{assistance}/lock', [AssistanceRecordController::class, 'lock'])
         ->name('assistance.lock');
+    Route::delete('records/{record}/assistance/{assistance}', [AssistanceRecordController::class, 'destroy'])
+        ->name('assistance.destroy');
+
 
     // Reports — all roles
     Route::get('/reports', [ReportController::class, 'index'])
         ->name('reports.index');
-Route::get('records/{record}/print', [FacedRecordController::class, 'print'])
-    ->name('records.print');
-    
+
     // SitRep — Admin only
     Route::middleware(['role:MSWDO / Admin'])->group(function () {
         Route::get('/sitrep', [SitRepController::class, 'index'])

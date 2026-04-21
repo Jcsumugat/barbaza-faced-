@@ -153,18 +153,22 @@ class FacedRecordController extends Controller
     }
 
     public function show(FacedRecord $record)
-    {
-        $record->load(['familyMembers.vulnerabilities', 'assistanceRecords', 'createdBy']);
+{
+    $record->load(['familyMembers.vulnerabilities', 'assistanceRecords', 'createdBy']);
 
-        return Inertia::render('FacedForm', [
-            'record' => $this->formatRecord($record),
-        ]);
+    return Inertia::render('FacedForm', [
+        'record' => $this->formatRecord($record),
+    ]);
+}
 
-        return Inertia::render('FacedPrint', [
-            'record' => $record->load(['familyMembers.vulnerabilities', 'assistanceRecords'])
-        ]);
-    }
+public function print(FacedRecord $record)
+{
+    $record->load(['familyMembers.vulnerabilities', 'assistanceRecords', 'createdBy']);
 
+    return Inertia::render('FacedPrint', [
+        'record' => $this->formatRecord($record),
+    ]);
+}
     public function edit(FacedRecord $record)
     {
         $user = request()->user();

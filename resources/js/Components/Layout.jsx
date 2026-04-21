@@ -1,7 +1,8 @@
 import { Link, usePage } from '@inertiajs/react';
 import {
     LayoutDashboard, FileText, BarChart2,
-    ShieldAlert, Users, LogOut, ShieldCheck, Menu, X, ChevronRight
+    ShieldAlert, Users, LogOut, ShieldCheck, Menu, X, ChevronRight,
+    HandHelping
 } from 'lucide-react';
 import { useState } from 'react';
 
@@ -26,19 +27,19 @@ export default function Layout({ children }) {
             roles: ['Barangay Staff', 'MSWDO / Admin'],
         },
         {
+            label: 'Assistance Records',
+            href: route('assistance.index'),
+            icon: HandHelping,
+            active: route().current('assistance.index'),
+            roles: ['MSWDO / Admin'],
+        },
+        {
             label: 'Reports',
             href: route('reports.index'),
             icon: BarChart2,
             active: route().current('reports.*'),
             roles: ['Barangay Staff', 'MSWDO / Admin'],
         },
-/*         {
-            label: 'SitRep / DROMIC',
-            href: route('sitrep.index'),
-            icon: ShieldAlert,
-            active: route().current('sitrep.*'),
-            roles: ['MSWDO / Admin'],
-        }, */
         {
             label: 'User Management',
             href: route('users.index'),
@@ -77,7 +78,7 @@ export default function Layout({ children }) {
                     </button>
                 </div>
 
-                {/* Nav Items — grows to fill space */}
+                {/* Nav Items */}
                 <nav className="flex-1 p-3 space-y-0.5 overflow-y-auto">
                     {visibleNav.map(item => (
                         <Link
@@ -102,7 +103,7 @@ export default function Layout({ children }) {
                     ))}
                 </nav>
 
-                {/* User Info — always pinned to bottom */}
+                {/* User Info */}
                 <div className="p-3 border-t border-gray-200 space-y-1 shrink-0">
                     <div className={`flex items-center gap-2.5 px-3 py-2 ${!sidebarOpen ? 'justify-center' : ''}`}>
                         <div className="w-7 h-7 bg-gray-900 rounded-lg flex items-center justify-center shrink-0">
@@ -133,7 +134,7 @@ export default function Layout({ children }) {
                 </div>
             </aside>
 
-            {/* Main — scrolls independently */}
+            {/* Main */}
             <main className="flex-1 flex flex-col overflow-y-auto">
 
                 {/* Top Bar */}
@@ -158,10 +159,8 @@ export default function Layout({ children }) {
                     </div>
                 </header>
 
-                {/* Flash Messages */}
                 <FlashMessages />
 
-                {/* Page Content */}
                 <div className="p-8 flex-1">
                     {children}
                 </div>
